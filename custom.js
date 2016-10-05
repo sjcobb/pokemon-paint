@@ -14,7 +14,7 @@ $( function() {
 
 function cryLoader() {
 	var i;
-	for (i=001; i <= 151; i++) {
+	for (i=001; i <= 5; i++) {
 		var file_num = '00' + i;
 		file_num = file_num.substr(file_num.length - 3, 3);
 		audio_id = 'cry-' + file_num + '';
