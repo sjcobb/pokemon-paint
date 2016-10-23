@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="custom.css">
-		<script src="/lib/jquery/jquery.min.js"></script>
-		<script src="/lib/greensock/src/minified/TimelineMax.min.js"></script>
-		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-		<script src="custom.js"></script>
+		<!-- <script src="/lib/jquery/jquery.min.js"></script> -->
 		<title>Pokemon Paint</title>
 	</head>
 
@@ -13,12 +10,22 @@
 		<section>
 		
 			<h1>Pokemon Cries</h1>
-			<button class="play">Play All</button>
+			<button id="play-all">Play All</button>
 			<div id="cry-wrap"></div>
 			
-			<div class="dd-container">
-				<div id="drop-area" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-				<img id="drag-img" src="assets/sprites/151.png" draggable="true" ondragstart="drag(event)">
+			<div id="drop-grid">
+				<div id="g-1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+				<div id="g-2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+				<div id="g-3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+				<button id="play" onclick="getDroppedItems()">Play</button>
+			</div>
+			
+			<div id="draggable-items">
+
+				<img src="assets/sprites/1.png" id="001" class="drag-item" draggable="true" ondragstart="drag(event)">
+				<img src="assets/sprites/2.png" id="002" class="drag-item" draggable="true" ondragstart="drag(event)">
+				<img src="assets/sprites/3.png" id="003" class="drag-item" draggable="true" ondragstart="drag(event)">
+
 			</div>
 
 			<div class="stanza">
@@ -31,7 +38,10 @@
 			</div>
 
 		</section>
-
+		
+		<script src="/lib/greensock/src/minified/TimelineMax.min.js"></script>
+		<script src="/lib/greensock/src/minified/utils/Draggable.min.js"></script>
+		<script src="custom.js"></script>
 	</body>
 
 </html>

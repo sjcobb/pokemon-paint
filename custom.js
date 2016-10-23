@@ -1,17 +1,10 @@
-$( function() {
-    
-    //create a synth and connect it to the master output (your speakers)
-    //var synth = new Tone.Synth().toMaster();
+/*
+*** CUSTOM JS ***
+*/
 
-    $('.key').click(function(){
-        //play a middle 'C' for the duration of an 8th note
-        //synth.triggerAttackRelease("C4", "8n");
-    });
-    
-    cryLoader();
-    playSong();
-    
-} );
+cryLoader();
+playSong();
+//getDroppedItems();
 
 function cryLoader() {
     var i;
@@ -24,8 +17,12 @@ function cryLoader() {
     }
 }
 
+function formatFile(file) {
+
+}
+
 function playSong() {
-    $(".play").click(function(){
+    document.getElementById("play-all").onclick = function() {
         (function myLoop (i) {
             setTimeout(function () {
                 console.log(i);
@@ -38,17 +35,43 @@ function playSong() {
                 } 
             }, 1000)
         } ) (1);
-    });
+    };
 }
 
+function getDroppedItems() {
+
+    var grid = document.getElementById("drop-grid"),
+        descendents = grid.getElementsByTagName("div");
+    //console.log(grid);
+    //console.log(descendents);
+
+    (function myLoop (i) {
+        setTimeout(function () {
+            item = descendents[i];
+            item_id = item.children[0].getAttribute('id');
+            audio_id = 'cry-' + item_id + '';
+            console.log(audio_id);
+            document.getElementById(audio_id).play();
+
+            if (item.tagName === 'mew') {
+
+            }
+
+            if (++i < descendents.length) {
+                myLoop(i);
+            } 
+        }, 1000)
+    } ) (0);
+
+}
+
+/*** DRAG & DROP ***/
 function allowDrop(ev) {
     ev.preventDefault();
 }
-
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
-
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");

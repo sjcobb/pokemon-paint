@@ -26,6 +26,7 @@ button:hover {
 
 
 .stanza {
+	display: none;
 	margin: 30px 0 0 0;
 }
 .stanza hr {
@@ -33,13 +34,13 @@ button:hover {
 	border: 1px solid #000;
 }
 
-.dd-container {
+#drop-grid {
 	float: left;
 	width: 100%;
 	margin: 10px 0 30px 0;
 	padding: 0;
 }
-#drop-area {
+.grid-item {
 	float: left;
 	width: 60px;
 	height: 60px;
@@ -49,4 +50,5 @@ button:hover {
 }
 #drag-img {
 	float: left;
+	cursor: pointer;
 }
