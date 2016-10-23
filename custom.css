@@ -33,3 +33,20 @@ button:hover {
 	border: 1px solid #000;
 }
 
+.dd-container {
+	float: left;
+	width: 100%;
+	margin: 10px 0 30px 0;
+	padding: 0;
+}
+#drop-area {
+	float: left;
+	width: 60px;
+	height: 60px;
+	margin: 0 30px 0 0;
+	padding: 10px;
+	border: 1px dotted #000;
+}
+#drag-img {
+	float: left;
+}
