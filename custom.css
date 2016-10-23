@@ -48,7 +48,13 @@ button:hover {
 	padding: 10px;
 	border: 1px dotted #000;
 }
-#drag-img {
-	float: left;
+
+#draggable-items {
+	margin: 20px 0;
+}
+#draggable-items .drag-item {
+	margin: 0 20px 0 0;
+}
+.drag-item {
 	cursor: pointer;
 }

@@ -13,19 +13,16 @@
 			<button id="play-all">Play All</button>
 			<div id="cry-wrap"></div>
 			
+			<div id="draggable-items">
+
+			</div>
+
 			<div id="drop-grid">
 				<div id="g-1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 				<div id="g-2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 				<div id="g-3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 				<button id="play" onclick="getDroppedItems()">Play</button>
-			</div>
-			
-			<div id="draggable-items">
-
-				<img src="assets/sprites/1.png" id="001" class="drag-item" draggable="true" ondragstart="drag(event)">
-				<img src="assets/sprites/2.png" id="002" class="drag-item" draggable="true" ondragstart="drag(event)">
-				<img src="assets/sprites/3.png" id="003" class="drag-item" draggable="true" ondragstart="drag(event)">
-
+				<button id="reset" onclick="resetItems()">Reset</button>
 			</div>
 
 			<div class="stanza">
