@@ -23,15 +23,6 @@ button {
 	}
 }
 
-.stanza {
-	display: none;
-	margin: 30px 0 0 0;
-	hr {
-		margin: 0 0 30px 0;
-		border: 1px solid #000;
-	}
-}
-
 #drop-grid {
 	float: left;
 	width: 100%;
@@ -55,4 +46,13 @@ button {
 }
 .drag-item {
 	cursor: pointer;
+}
+
+.stanza {
+	display: none;
+	margin: 30px 0 0 0;
+	hr {
+		margin: 0 0 30px 0;
+		border: 1px solid #000;
+	}
 }
