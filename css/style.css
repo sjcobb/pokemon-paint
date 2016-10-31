@@ -17,10 +17,9 @@ button {
   font: 600 14px/1.2 Verdana, Arial, sans-serif;
   cursor: pointer;
   transition: all 0.3s; }
-
-button:hover {
-  background: blue;
-  color: #fff; }
+  button:hover {
+    background: blue;
+    color: #fff; }
 
 .stanza {
   display: none;
