@@ -1,40 +1,40 @@
 <!DOCTYPE html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<title>Pokemon Paint</title>
-	</head>
+<html>
+    <head>
+    	<title>Pokemon Paint</title>
+    	<link rel="stylesheet" type="text/css" href="css/style.css">
+        <script data-main="app" src="lib/requirejs/require.js"></script>
+    </head>
+    <body>
+    	<section>
+    		<h1>Pokemon Cries</h1>
+    		<button id="play-all">Play All</button>
+    		<div id="cry-wrap"></div>
+    		
+    		<div id="draggable-items">
 
-	<body>
-		<section>
-			<h1>Pokemon Cries</h1>
-			<button id="play-all">Play All</button>
-			<div id="cry-wrap"></div>
-			
-			<div id="draggable-items">
+    		</div>
 
-			</div>
+    		<div id="drop-grid">
+    			<div id="g-1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    			<div id="g-2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    			<div id="g-3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    			<button id="play" onclick="getDroppedItems()">Play</button>
+    			<button id="reset" onclick="resetItems()">Reset</button>
+    		</div>
 
-			<div id="drop-grid">
-				<div id="g-1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-				<div id="g-2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-				<div id="g-3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-				<button id="play" onclick="getDroppedItems()">Play</button>
-				<button id="reset" onclick="resetItems()">Reset</button>
-			</div>
+    		<div class="stanza">
+    			<hr>
+    			<hr>
+    			<hr>
+    			<hr>
+    			<hr>
+    			<hr>
+    		</div>
+    	</section>
 
-			<div class="stanza">
-				<hr>
-				<hr>
-				<hr>
-				<hr>
-				<hr>
-				<hr>
-			</div>
-		</section>
-		
-		<script src="/lib/greensock/src/minified/TimelineMax.min.js"></script>
-		<script src="/lib/greensock/src/minified/utils/Draggable.min.js"></script>
-		<script src="js/custom.js"></script>
-	</body>
+    	<!-- <script src="js/custom.js"></script> -->
+    	<!-- <script src="js/cry-shifter.js"></script> -->
 
+    </body>
 </html>
