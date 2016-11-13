@@ -11,4 +11,4 @@ var shifter = require("pitch-shift")(
     })
 
 //Feed some data to the shifter
-shifter(new Float32Array([1, 1, 0, 1, 0, 0, 0 /* ... etc */ ]))
+shifter(new Float32Array([1, 1, 0, 1, 0, 0, 0 /* ... etc */ ]));
