@@ -12,7 +12,7 @@ define(function (require) {
 
     /*** CRY SHIFT ***/
     //Create a pitch shifting object
-    var shifter = require("../pitchshift.js")(
+    var shifter = require("pitchshift")(
         function onData(frame) {
         //Play / write out frame.  Called whenver data is ready
         },
