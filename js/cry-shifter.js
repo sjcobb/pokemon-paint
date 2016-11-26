@@ -89,11 +89,17 @@ function loadFiles(list) {
     }
 }
 
-loadFiles(["gettysburg.mp3", "guitar_c.mp3"])
+loadFiles([
+    "/assets/cries/mp3/001.mp3", 
+    "/assets/cries/mp3/002.mp3", 
+    "/assets/cries/mp3/150.mp3"
+])
 
 var prettyNames = {
     "oscillator": "Sine Wave",
-    "./assets/cries/001.mp3": "Bulbasaur"
+    "/assets/cries/mp3/001.mp3": "Bulbasaur",
+    "/assets/cries/mp3/002.mp3": "Ivysaur",
+    "/assets/cries/mp3/150.mp3": "Mewtwo"
 }
 
 domready(function() {
