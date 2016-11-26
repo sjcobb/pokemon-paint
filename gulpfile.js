@@ -9,13 +9,19 @@ gulp.task('styles', function() {
 });
 
 gulp.task('javascript', function() {
+	/* combine lib js */
+	//gulp.src('./lib/**/*.js')
+    	//.pipe(concat('lib.js'))
+    	//.pipe(gulp.dest('./'));
+    /* combine app js */
 	gulp.src('./js/*.js')
-    	.pipe(concat('bundle.js'))
+    	.pipe(concat('app.js'))
     	.pipe(gulp.dest('./'));
 });
 
 //Watch task
 gulp.task('default',function() {
     gulp.watch('sass/**/*.scss',['styles'])
+    //gulp.watch('./lib/**/*.js', ['javascript'])
     gulp.watch('./js/*.js', ['javascript'])
 });
