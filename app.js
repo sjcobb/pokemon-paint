@@ -181,7 +181,7 @@ domready(function() {
 *** CUSTOM JS ***
 */
 
-//cryLoader();
+cryLoader();
 playSong();
 
 function cryLoader() {

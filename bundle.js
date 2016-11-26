@@ -1,4 +1,4 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.module = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*
 *** CRY SHIFTER ***
 */
@@ -177,106 +177,6 @@ domready(function() {
         }
     })
 })
-
-/*
-*** CUSTOM JS ***
-*/
-
-cryLoader();
-playSong();
-
-function cryLoader() {
-    var i;
-    for (i=1; i <= 9; i++) {
-        var file_num = "00" + i;
-        file_num = file_num.substr(file_num.length - 3, 3);
-        audio_id = "cry-" + file_num + "";
-
-        //load audio
-        document.getElementById('cry-wrap').innerHTML += '<audio id='+ audio_id +'><source src="assets/cries/mp3/'+ file_num +'.mp3" type="audio/mpeg"></audio>';
-
-        //load buttons
-        document.getElementById('cry-wrap').innerHTML += "<button onclick='document.getElementById(\""+ audio_id +"\").play();'><img src=assets/sprites/"+ i +".png></button>";
-
-        //load draggable images
-        document.getElementById('draggable-items').innerHTML += "<img src='assets/sprites/"+ i +".png' id='"+ file_num +"' class='drag-item' draggable='true' ondragstart='drag(event)'>";
-    }
-}
-
-function formatFile(file) {
-
-}
-
-function playSong() {
-    document.getElementById("play-all").onclick = function() {
-        (function myLoop (i) {
-            setTimeout(function () {
-                console.log(i);
-                var file_num = "00" + i;
-                file_num = file_num.substr(file_num.length - 3, 3);
-                audio_id = "cry-" + file_num + "";
-                document.getElementById(audio_id).play();
-                if (++i <= 5) {
-                    myLoop(i);
-                } 
-            }, 1000)
-        } ) (1);
-    };
-}
-
-function getDroppedItems() {
-    var grid = document.getElementById("drop-grid"),
-        descendents = grid.getElementsByTagName("div");
-
-    (function myLoop (i) {
-        setTimeout(function () {
-            item = descendents[i];
-            item_id = item.children[0].getAttribute("id");
-            audio_id = "cry-" + item_id + "";
-            console.log(audio_id);
-            document.getElementById(audio_id).play();
-
-            if (item.tagName === "mew") {
-
-            }
-
-            if (++i < descendents.length) {
-                myLoop(i);
-            } 
-        }, 1000)
-    } ) (0);
-}
-
-function resetItems() {
-    var items = document.getElementsByClassName("drag-item");
-    for (var i = 0; i < items.length; ++i) {
-        var item = items[i];  
-        document.getElementById("draggable-items").appendChild(item);
-    }
-}
-
-/*** DRAG & DROP ***/
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-}
-
-/* http://www.musictheory.net/lessons/10 */
-
-var staff = { 
-    fred: { apples: 2, oranges: 4, bananas: 7, melons: 0 }, 
-    mary: { apples: 0, oranges: 10, bananas: 0, melons: 0 }, 
-    sarah: { apples: 0, oranges: 0, bananas: 0, melons: 5 } 
-}
-
-console.log( staff[ 'fred' ][ 'apples' ] );
 
 },{"domready":8,"pitch-shift":21,"typedarray-pool":22}],2:[function(require,module,exports){
 /**
@@ -7059,5 +6959,4 @@ exports.clearCache = function clearCache() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"bit-twiddle":2,"dup":9}]},{},[1])(1)
-});
+},{"bit-twiddle":2,"dup":9}]},{},[1]);
