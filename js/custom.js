@@ -11,13 +11,10 @@ function cryLoader() {
         var file_num = "00" + i;
         file_num = file_num.substr(file_num.length - 3, 3);
         audio_id = "cry-" + file_num + "";
-
         //load audio
         document.getElementById('cry-wrap').innerHTML += '<audio id='+ audio_id +'><source src="assets/cries/mp3/'+ file_num +'.mp3" type="audio/mpeg"></audio>';
-
         //load buttons
         document.getElementById('cry-wrap').innerHTML += "<button onclick='document.getElementById(\""+ audio_id +"\").play();'><img src=assets/sprites/"+ i +".png></button>";
-
         //load draggable images
         document.getElementById('draggable-items').innerHTML += "<img src='assets/sprites/"+ i +".png' id='"+ file_num +"' class='drag-item' draggable='true' ondragstart='drag(event)'>";
     }
@@ -47,7 +44,6 @@ function playSong() {
 function getDroppedItems() {
     var grid = document.getElementById("drop-grid"),
         descendents = grid.getElementsByTagName("div");
-
     (function myLoop (i) {
         setTimeout(function () {
             item = descendents[i];
