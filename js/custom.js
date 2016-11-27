@@ -55,11 +55,9 @@ function getDroppedItems() {
             audio_id = "cry-" + item_id + "";
             console.log(audio_id);
             document.getElementById(audio_id).play();
-
-            if (item.tagName === "mew") {
+            if (item.tagName === "mewtwo") {
 
             }
-
             if (++i < descendents.length) {
                 myLoop(i);
             } 
