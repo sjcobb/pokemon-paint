@@ -1,4 +1,8 @@
-/* http://www.musictheory.net/lessons/10 */
+/* 
+	http://www.musictheory.net/lessons/10 
+	http://stackoverflow.com/questions/15839649/pass-object-through-datatransfer
+	http://jsfiddle.net/aNErc/2/
+*/
 
 var staff = { 
     ledger-e: { whole-note1: bulbasaur, whole-note2: ivysaur, whole-note3: venusaur }, 
