@@ -45,7 +45,7 @@ button {
 
 .stanza {
   display: block;
-  margin: 30px 0 0 0; }
+  margin: 30px 0 30px 0; }
   .stanza hr {
     margin: 0 0 30px 0;
     border: 1px solid #000; }
