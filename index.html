@@ -5,37 +5,42 @@
     	<link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-    	<section>
-    		<h1>Pokemon Cries</h1>
-    		<button id="play-all">Play All</button>
-    		<div id="cry-wrap"></div>
-    		<div id="draggable-items"></div>
-    		<div id="drop-grid">
-    			<div id="g-1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    			<div id="g-2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    			<div id="g-3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    			<button id="play" onclick="getDroppedItems()">Play</button>
-    			<button id="reset" onclick="resetItems()">Reset</button>
-    		</div>
-    		<div class="stanza">
-    			<hr>
-    			<hr>
-    			<hr>
-    			<hr>
-    			<hr>
-    			<hr>
-    		</div>
-    	</section>
-        <section>
-            <div class=buttonDiv>
-                <select id=audioSource>
-                    <option value="oscillator">Sine Wave</option>
-                </select>
-                <input id=pausePlay type="button" value="Play"/>
-                <label for=applyShift>Apply shift</label>
-                <input id=applyShift type="checkbox" checked />
-            </div>
-        </section>
+        <main>
+            <div id="pokedex">
+            	<section class="region">
+            		<h1>Pokemon Paint</h1>
+                    <h2>Cries</h2>
+            		<button id="play-all">Play All</button>
+            		<div id="cry-wrap"></div>
+            		<div id="draggable-items"></div>
+            		<div id="drop-grid">
+            			<div id="g-1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            			<div id="g-2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            			<div id="g-3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            			<button id="play" onclick="getDroppedItems()">Play</button>
+            			<button id="reset" onclick="resetItems()">Reset</button>
+            		</div>
+            		<div class="stanza">
+            			<hr>
+            			<hr>
+            			<hr>
+            			<hr>
+            			<hr>
+            			<hr>
+            		</div>
+            	</section>
+                <section class="region">
+                    <div class=buttonDiv>
+                        <select id=audioSource>
+                            <option value="oscillator">Sine Wave</option>
+                        </select>
+                        <input id=pausePlay type="button" value="Play"/>
+                        <label for=applyShift>Apply shift</label>
+                        <input id=applyShift type="checkbox" checked />
+                    </div>
+                </section>
+            </div><!-- end #pokedex -->
+        </main>
         <script src="bundle.js"></script>
         <script src="/js/custom.js"></script>
     </body>
