@@ -14,4 +14,5 @@ src2.type = "audio/mpeg";
 src2.src  = "assets/cries/mp3/151.mp3";
 snd2.appendChild(src2);
 
-snd1.play(); snd2.play(); // Now both will play at the same time
+//snd1.play(); 
+//snd2.play();
