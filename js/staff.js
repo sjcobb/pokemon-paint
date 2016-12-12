@@ -29,30 +29,27 @@ function playSong() {
 	var data  = parseTable(table);
 	console.log(data);
 
-	var q;
-	/*for (q = 0; q < 10; i++) {
-
-	}*/
-
 	var q = 0;
 	var i = 0;
 	(function myLoop (i) {
+		for (q = 0; q < 3; q++) {
+			var temp = data[i][q];
+			console.log(temp);
+			var snd1  = new Audio();
+			var src1  = document.createElement("source");
+			src1.type = "audio/mpeg";
+			src1.src  = "assets/cries/mp3/"+ temp +".mp3";
+			snd1.appendChild(src1);
+			snd1.play();
+			console.log("i = "+ i );
+			console.log("q = "+ q );
+		}
+
 		setTimeout(function () {
-		    var temp = data[q][i];
-		    console.log(temp);
-		    var snd1  = new Audio();
-		    var src1  = document.createElement("source");
-		    src1.type = "audio/mpeg";
-		    src1.src  = "assets/cries/mp3/"+ temp +".mp3";
-		    snd1.appendChild(src1);
-		    snd1.play();
 		    if (++i < 3) {
 		        myLoop(i);
 		    } 
 		}, 1000)
-		console.log("q = "+ q );
-		console.log("i = "+ i );
-		q++;
 	} ) (0);
 
     /*var grid = document.getElementById("drop-grid"),
