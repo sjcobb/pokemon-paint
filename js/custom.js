@@ -2,12 +2,13 @@
 *** CUSTOM JS ***
 */
 
-cryLoader();
-playSong();
+//cryLoader();
+spriteLoader();
+//playAll();
 
 function cryLoader() {
     var i;
-    for (i=1; i <= 9; i++) {
+    for (i=1; i <= 3; i++) {
         var file_num = "00" + i;
         file_num = file_num.substr(file_num.length - 3, 3);
         audio_id = "cry-" + file_num + "";
@@ -20,11 +21,22 @@ function cryLoader() {
     }
 }
 
+function spriteLoader() {
+    var i;
+    for (i=1; i <= 9; i++) {
+        var file_num = "00" + i;
+        file_num = file_num.substr(file_num.length - 3, 3);
+        audio_id = "cry-" + file_num + "";
+        //load draggable images
+        document.getElementById('draggable-items').innerHTML += "<img src='assets/sprites/"+ i +".png' id='"+ file_num +"' class='drag-item' draggable='true' ondragstart='drag(event)'>";
+    }
+}
+
 function formatFile(file) {
 
 }
 
-function playSong() {
+function playAll() {
     document.getElementById("play-all").onclick = function() {
         (function myLoop (i) {
             setTimeout(function () {
@@ -67,17 +79,4 @@ function resetItems() {
         var item = items[i];  
         document.getElementById("draggable-items").appendChild(item);
     }
-}
-
-/*** DRAG & DROP ***/
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
 }

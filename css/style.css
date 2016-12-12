@@ -78,20 +78,39 @@ main {
   text-align: left; }
 
 #drop-grid {
-  float: left;
+  display: block;
   width: 100%;
-  margin: 10px 0 30px 0;
+  margin: 10px 0 20px 0;
   padding: 0; }
 
-.grid-item {
-  float: left;
-  width: 60px;
-  height: 60px;
-  margin: 0 30px 0 0;
-  padding: 10px;
-  border: 1px dotted #000; }
+table#staff {
+  display: flex;
+  width: 100%; }
+  table#staff thead {
+    display: flex; }
+    table#staff thead tr th {
+      display: block;
+      height: 40px;
+      margin: 10px 30px 0 0;
+      padding: 0; }
+  table#staff tbody {
+    display: flex;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden; }
+  table#staff tr {
+    display: flex;
+    flex-direction: column; }
+    table#staff tr td {
+      display: block;
+      width: 40px;
+      height: 40px;
+      margin: 0 30px 10px 0;
+      padding: 0;
+      border: 1px dotted #000; }
 
 #draggable-items {
+  height: 50px;
   margin: 20px 0; }
   #draggable-items .drag-item {
     margin: 0 20px 0 0; }
@@ -99,9 +118,16 @@ main {
 .drag-item {
   cursor: pointer; }
 
+.controls {
+  display: block;
+  float: left;
+  width: 100%;
+  margin: 0 0 30px 0;
+  padding: 0; }
+
 .stanza {
   display: block;
-  margin: 30px 0 0 0; }
+  margin: 30px 0 30px 0; }
   .stanza hr {
     margin: 0 0 30px 0;
     border: 1px solid #000; }

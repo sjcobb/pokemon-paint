@@ -1,15 +1,40 @@
-/* 
-	http://www.musictheory.net/lessons/10 
-	http://stackoverflow.com/questions/15839649/pass-object-through-datatransfer
-	http://jsfiddle.net/aNErc/2/
-*/
-
-var staff = { 
-    ledger-e: { whole-note1: bulbasaur, whole-note2: ivysaur, whole-note3: venusaur }, 
-    ledger-g: { whole-note1: charmander, whole-note2: charmeleon, whole-note3: charizard }, 
-    ledger-b: { whole-note1: squirtle, whole-note2: wartortle, whole-note3: blastoise },
-    ledger-d: { whole-note1: pidgey, whole-note2: pidgeotto, whole-note3: pidgeot },
-    ledger-f: { whole-note1: oddish, whole-note2: gloom, whole-note3: vileplume } 
+/**
+ * Generate musical staff
+ */
+function generateStaff() {
+	var table = document.querySelector("table");
+	var data  = parseTable(table);
+	console.log(data);
 }
 
-console.log( staff[ 'ledger-e' ][ 'whole-note2' ] );
+/**
+ * Play song
+ */
+function playSong() {
+	var table = document.querySelector("table");
+	var data  = parseTable(table);
+	console.log(data);
+
+	var q = 0;
+	var i = 0;
+	(function myLoop (i) {
+		for (q = 0; q < 3; q++) {
+			var temp = data[i][q];
+			console.log(temp);
+			var snd1  = new Audio();
+			var src1  = document.createElement("source");
+			src1.type = "audio/mpeg";
+			src1.src  = "assets/cries/mp3/"+ temp +".mp3";
+			snd1.appendChild(src1);
+			snd1.play();
+			console.log("i = "+ i );
+			console.log("q = "+ q );
+		}
+
+		setTimeout(function () {
+		    if (++i < 3) {
+		        myLoop(i);
+		    } 
+		}, 1000)
+	} ) (0);
+}

@@ -14,12 +14,40 @@
             		<div id="cry-wrap"></div>
             		<div id="draggable-items"></div>
             		<div id="drop-grid">
-            			<div id="g-1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-            			<div id="g-2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-            			<div id="g-3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-            			<button id="play" onclick="getDroppedItems()">Play</button>
-            			<button id="reset" onclick="resetItems()">Reset</button>
-            		</div>
+                        <table id="staff">
+                            <thead>
+                                <tr>
+                                    <th>0</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="1">
+                                    <td class="1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                    <td class="2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                    <td class="3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                </tr>
+                                <tr class="2">
+                                    <td class="1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                    <td class="2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                    <td class="3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                </tr>
+                                <tr class="3">
+                                    <td class="1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                    <td class="2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                    <td class="3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="controls">
+                        <button id="play" onclick="playSong()">playSong()</button>
+                        <button id="reset" onclick="resetItems()">resetItems()</button>
+                        <button id="gen-staff" onclick="generateStaff()">generateStaff()</button>
+                    </div>
+                    
             		<div class="stanza">
             			<hr>
             			<hr>
@@ -41,7 +69,13 @@
                 </section>
             </div><!-- end #pokedex -->
         </main>
+
+    	
         <script src="bundle.js"></script>
+        <script src="/js/drag-drop.js"></script>
+        <script src="/js/parse-table.js"></script>
+        <!-- <script src="/js/audio.js"></script> -->
+        <script src="/js/staff.js"></script>
         <script src="/js/custom.js"></script>
     </body>
 </html>
