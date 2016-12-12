@@ -74,6 +74,7 @@ main {
   margin: 0 auto;
   padding: 0;
   border: 10px solid #c00d0d;
+  /* border: 10px solid $red; */
   border-radius: 5px;
   text-align: left; }
 

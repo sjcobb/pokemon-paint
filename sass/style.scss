@@ -82,6 +82,7 @@ main {
 	margin: 0 auto;
 	padding: 0;
 	border: 10px solid #c00d0d;
+	/* border: 10px solid $red; */
 	border-radius: 5px;
 	text-align: left;
 }
@@ -131,6 +132,7 @@ table#staff {
 				content: '';
 				position: absolute;
 				top: 50%;
+				left: 0;
 				bottom: auto;
 				height: 2px;
 				width: 100%;
@@ -149,6 +151,7 @@ table#staff {
 }
 .drag-item {
 	cursor: pointer;
+	z-index: 10;
 }
 
 .controls {
