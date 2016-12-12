@@ -118,9 +118,24 @@ table#staff {
 			display: block;
 			width: 40px;
 			height: 40px;
-			margin: 0 30px 10px 0;
+			margin: 0 0 10px 0;
 			padding: 0;
-			border: 1px dotted #000;
+			position: relative;
+			-webkit-transition: all 0.3s;
+			transition: all 0.3s;
+			&:hover {
+				background: #eee;
+				border: 1px dotted #000;
+			}
+			&:after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				bottom: auto;
+				height: 2px;
+				width: 100%;
+				background: #000;
+			}
 		}
 	}
 }
