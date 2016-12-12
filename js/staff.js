@@ -18,7 +18,7 @@ function playSong() {
 	var q = 0;
 	var i = 0;
 	(function myLoop (i) {
-		for (q = 0; q < 3; q++) {
+		for (q = 0; q < 5; q++) {
 			var temp = data[i][q];
 			console.log(temp);
 			var snd1  = new Audio();
@@ -32,7 +32,7 @@ function playSong() {
 		}
 
 		setTimeout(function () {
-		    if (++i < 3) {
+		    if (++i < 5) {
 		        myLoop(i);
 		    } 
 		}, 1000)
