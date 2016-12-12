@@ -152,6 +152,7 @@ table#staff {
 }
 .drag-item {
 	display: inline-block;
+	max-width: 32px;
 	position: relative;
 	cursor: pointer;
 	z-index: 10;
