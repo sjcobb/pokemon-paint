@@ -7,6 +7,7 @@ spriteLoader();
 //playAll();
 
 function cryLoader() {
+    //NOT USED
     var i;
     for (i=1; i <= 3; i++) {
         var file_num = "00" + i;
@@ -23,7 +24,7 @@ function cryLoader() {
 
 function spriteLoader() {
     var i;
-    for (i=1; i <= 9; i++) {
+    for (i=1; i <= 151; i++) {
         var file_num = "00" + i;
         file_num = file_num.substr(file_num.length - 3, 3);
         audio_id = "cry-" + file_num + "";
@@ -37,6 +38,7 @@ function formatFile(file) {
 }
 
 function playAll() {
+    //NOT USED
     document.getElementById("play-all").onclick = function() {
         (function myLoop (i) {
             setTimeout(function () {
