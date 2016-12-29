@@ -1,3 +1,5 @@
+var watchify = require('watchify');
+var browserify = require('browserify');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
@@ -17,11 +19,19 @@ gulp.task('javascript', function() {
 	gulp.src('./js/*.js')
     	.pipe(concat('app.js'))
     	.pipe(gulp.dest('./'));
+    //browserify app.js --s module > bundle.js;
+});
+
+gulp.task('browserify-dev', function() {
+
 });
 
 //Watch task
 gulp.task('default',function() {
     gulp.watch('sass/**/*.scss',['styles'])
+    gulp.watch('./js/*.js', ['javascript'])
+    //gulp.watch('./js/*.js', ['browserify-dev'])
     //gulp.watch('./lib/**/*.js', ['javascript'])
-    //gulp.watch('./js/*.js', ['javascript'])
 });
+
+//var bundle = browserify('./app.js').bundle();

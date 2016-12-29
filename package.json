@@ -30,6 +30,8 @@
     "pitch-shift": "~0.0.0"
   },
   "devDependencies": {
+    "watchify": "~3.8.0",
+    "browserify": "~13.1.1",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
     "gulp-concat": "^2.6.0"
