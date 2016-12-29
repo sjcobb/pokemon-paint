@@ -12,8 +12,8 @@
                     <h2>Cries</h2>
             		<div id="cry-wrap"></div>
             		<div id="draggable-items">
-                        <img src="assets/sprites/drum.png" id="drum" class="drag-item" draggable="true" ondragstart="drag(event)">
-                        <img src="assets/sprites/key.png" id="key" class="drag-item" draggable="true" ondragstart="drag(event)">
+                        <img src="assets/sprites/drum.png" id="drum" class="drag-item" draggable="true">
+                        <img src="assets/sprites/key.png" id="key" class="drag-item" draggable="true">
                     </div>
             		<div id="drop-grid">
                         <table id="staff">
@@ -28,46 +28,46 @@
                             </thead>
                             <tbody>
                                 <tr class="0">
-                                    <td class="0" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="4" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                    <td class="grid-item 0"></td>
+                                    <td class="grid-item 1"></td>
+                                    <td class="grid-item 2"></td>
+                                    <td class="grid-item 3"></td>
+                                    <td class="grid-item 4"></td>
                                 </tr>
                                 <tr class="1">
-                                    <td class="0" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="4" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                    <td class="grid-item 0"></td>
+                                    <td class="grid-item 1"></td>
+                                    <td class="grid-item 2"></td>
+                                    <td class="grid-item 3"></td>
+                                    <td class="grid-item 4"></td>
                                 </tr>
                                 <tr class="2">
-                                    <td class="0" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="4" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                    <td class="grid-item 0"></td>
+                                    <td class="grid-item 1"></td>
+                                    <td class="grid-item 2"></td>
+                                    <td class="grid-item 3"></td>
+                                    <td class="grid-item 4"></td>
                                 </tr>
                                 <tr class="3">
-                                    <td class="0" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="4" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                    <td class="grid-item 0"></td>
+                                    <td class="grid-item 1"></td>
+                                    <td class="grid-item 2"></td>
+                                    <td class="grid-item 3"></td>
+                                    <td class="grid-item 4"></td>
                                 </tr>
                                 <tr class="4">
-                                    <td class="0" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="1" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="2" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="3" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-                                    <td class="4" class="grid-item" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                                    <td class="grid-item 0"></td>
+                                    <td class="grid-item 1"></td>
+                                    <td class="grid-item 2"></td>
+                                    <td class="grid-item 3"></td>
+                                    <td class="grid-item 4"></td>
                                 </tr> 
                             </tbody>
                         </table>
                     </div>
 
                     <div class="controls">
-                        <button id="play" onclick="playSong()">Play</button>
+                        <button id="play">Play</button>
                         <button id="reset" onclick="resetItems()">Reset</button>
                     </div>
                     
@@ -85,11 +85,8 @@
             </div><!-- end #pokedex -->
         </main>
 
-    	
         <script src="bundle.js"></script>
-        <!-- <script src="/js/drag-drop.js"></script>
-        <script src="/js/parse-table.js"></script>
-        <script src="/js/staff.js"></script>
-        <script src="/js/custom.js"></script> -->
+        <!-- <script src="app.js"></script> -->
+
     </body>
 </html>

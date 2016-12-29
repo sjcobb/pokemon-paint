@@ -10,6 +10,9 @@ function generateStaff() {
 /**
  * Play song
  */
+document.getElementById("play").onclick = function() {
+    playSong();
+};
 function playSong() {
 	var table = document.querySelector("table");
 	var data  = parseTable(table);

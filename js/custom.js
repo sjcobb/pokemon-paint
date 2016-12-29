@@ -24,12 +24,12 @@ function cryLoader() {
 
 function spriteLoader() {
     var i;
-    for (i=1; i <= 151; i++) {
+    for (i=1; i <= 3; i++) {
         var file_num = "00" + i;
         file_num = file_num.substr(file_num.length - 3, 3);
         audio_id = "cry-" + file_num + "";
         //load draggable images
-        document.getElementById('draggable-items').innerHTML += "<img src='assets/sprites/"+ i +".png' id='"+ file_num +"' class='drag-item' draggable='true' ondragstart='drag(event)'>";
+        document.getElementById('draggable-items').innerHTML += "<img src='assets/sprites/"+ i +".png' id='"+ file_num +"' class='drag-item' draggable='true'>";
     }
 }
 
@@ -52,7 +52,7 @@ function playAll() {
                 } 
             }, 1000)
         } ) (1);
-    };
+    }; 
 }
 
 function getDroppedItems() {
@@ -75,6 +75,10 @@ function getDroppedItems() {
     } ) (0);
 }
 
+/* Reset */
+document.getElementById("reset").onclick = function() {
+    resetItems();
+};
 function resetItems() {
     var items = document.getElementsByClassName("drag-item");
     for (var i = 0; i < items.length; ++i) {
