@@ -204,7 +204,7 @@ function cryLoader() {
 
 function spriteLoader() {
     var i;
-    for (i=1; i <= 151; i++) {
+    for (i=1; i <= 3; i++) {
         var file_num = "00" + i;
         file_num = file_num.substr(file_num.length - 3, 3);
         audio_id = "cry-" + file_num + "";
@@ -235,7 +235,7 @@ function playAll() {
     }; 
 }
 
-function getDroppedItems() {
+/*function getDroppedItems() {
     var grid = document.getElementById("drop-grid"),
         descendents = grid.getElementsByTagName("div");
     (function myLoop (i) {
@@ -253,7 +253,7 @@ function getDroppedItems() {
             } 
         }, 1000)
     } ) (0);
-}
+}*/
 
 /* Reset */
 document.getElementById("reset").onclick = function() {
@@ -371,10 +371,14 @@ function playSong() {
 	(function myLoop (i) {
 		for (q = 0; q < 5; q++) {
 			var temp = data[i][q];
-			//console.log("temp = "+ temp);
-			//console.log("i = "+ i );
-			//console.log("q = "+ q );
+			console.log("temp = "+ temp);
+			console.log("i = "+ i );
+			console.log("q = "+ q );
 			if (temp != null) {
+				if (q == 2) {
+					console.log("B NOTE");
+				}
+
 				var snd1  = new Audio();
 				var src1  = document.createElement("source");
 				src1.type = "audio/mpeg";
