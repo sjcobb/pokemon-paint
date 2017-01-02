@@ -35,8 +35,12 @@ function playSong() {
 			console.log("i = "+ i );
 			console.log("q = "+ q );
 			if (temp != null) {
+				
 				//Init web audio
-				//var shifter = createProcessingNode(context)
+				var shifter = createProcessingNode(context);
+				curSource = (dataSources[sourceSelect.value])();
+				curSource.connect(context.destination);
+				curSource.start(0);
 
 				if (q == 2) {
 					console.log("B NOTE");
