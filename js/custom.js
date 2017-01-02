@@ -6,10 +6,6 @@
 spriteLoader();
 //playAll();
 
-domready(function() {
-
-})
-
 function cryLoader() {
     //NOT USED
     var i;
