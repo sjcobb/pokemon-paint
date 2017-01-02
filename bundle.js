@@ -1,6 +1,6 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.module = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*
-*** CRY SHIFTER ***
+*** AUDIO JS ***
 */
 var domready = require("domready")
 var pool = require("typedarray-pool")
@@ -103,81 +103,6 @@ var prettyNames = {
     "/assets/cries/mp3/150.mp3": "Mewtwo"
 }
 
-domready(function() {
-
-    //Init web audio
-    var shifter = createProcessingNode(context)
-
-    var pausePlay = document.getElementById("pausePlay")
-    var sourceSelect = document.getElementById("audioSource")
-    var applyShift = document.getElementById("applyShift")
-
-    var playing = false
-    var useFilter = true
-    var curSource = null
-  
-    ondatasource = function(url) {
-        var opt = document.createElement("option")
-        opt.text = prettyNames[url]
-        opt.value = url
-        sourceSelect.add(opt)
-    }
-
-    sourceSelect.remove(0)
-    for(var id in dataSources) {
-        ondatasource(id)
-    }
-  
-    pausePlay.addEventListener("click", function() {
-        if(playing) {
-            curSource.disconnect(0)
-            if(useFilter) {
-                shifter.disconnect(0)
-            }
-            if(!curSource.start) {
-                curSource.noteOff(0)
-            } else {
-                curSource.stop(0)
-                curSource.noteOff(0)
-            }
-            curSource = null
-            playing = false
-            pausePlay.value = "Play"
-        } else {
-            curSource = (dataSources[sourceSelect.value])()
-            if(useFilter) {
-                curSource.connect(shifter)
-                shifter.connect(context.destination)
-            } else {
-                curSource.connect(context.destination)
-            }
-            if(!curSource.start) {
-                curSource.noteOn(0)
-            } else {
-                curSource.start(0)
-            }
-            curSource.loop = true
-            playing = true
-            pausePlay.value = "Pause"
-        }
-    })
-  
-  
-    applyShift.addEventListener("change", function() {
-        useFilter = !!applyShift.checked
-        if(playing) {
-            curSource.disconnect(0)
-            if(useFilter) {
-                curSource.connect(shifter)
-                shifter.connect(context.destination)
-            } else {
-                shifter.disconnect(0)
-                curSource.connect(context.destination)
-            }
-        }
-    })
-})
-
 /*
 *** CUSTOM JS ***
 */
@@ -185,6 +110,10 @@ domready(function() {
 //cryLoader();
 spriteLoader();
 //playAll();
+
+domready(function() {
+
+})
 
 function cryLoader() {
     //NOT USED
@@ -346,6 +275,14 @@ function parseTable(table) {
     return arrayify(table.tBodies[0].rows).map(factory(headings));
 }
 
+/*
+*** STAFF JS ***
+*/
+
+domready(function() {
+
+})
+
 /**
  * Generate musical staff
  */
@@ -375,6 +312,9 @@ function playSong() {
 			console.log("i = "+ i );
 			console.log("q = "+ q );
 			if (temp != null) {
+				//Init web audio
+				//var shifter = createProcessingNode(context)
+
 				if (q == 2) {
 					console.log("B NOTE");
 				}

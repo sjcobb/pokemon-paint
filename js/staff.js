@@ -1,3 +1,11 @@
+/*
+*** STAFF JS ***
+*/
+
+domready(function() {
+
+})
+
 /**
  * Generate musical staff
  */
@@ -27,6 +35,9 @@ function playSong() {
 			console.log("i = "+ i );
 			console.log("q = "+ q );
 			if (temp != null) {
+				//Init web audio
+				//var shifter = createProcessingNode(context)
+
 				if (q == 2) {
 					console.log("B NOTE");
 				}
