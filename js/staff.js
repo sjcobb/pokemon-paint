@@ -16,7 +16,7 @@ function createProcessingNode(context) {
         buf.set(data)
         queue.push(buf)
     }, function(t, pitch) {
-        //console.log(t, pitch)
+        console.log(t, pitch)
         return 0.1 * (Math.round(t) % 15) + 0.5
     }, {
         frameSize: frame_size,
@@ -96,6 +96,12 @@ loadFiles([
     "/assets/cries/mp3/001.mp3", 
     "/assets/cries/mp3/002.mp3",
     "/assets/cries/mp3/003.mp3",
+    "/assets/cries/mp3/004.mp3",
+    "/assets/cries/mp3/005.mp3",
+    "/assets/cries/mp3/006.mp3",
+    "/assets/cries/mp3/007.mp3",
+    "/assets/cries/mp3/008.mp3",
+    "/assets/cries/mp3/009.mp3",
     "/assets/cries/mp3/150.mp3"
 ])
 
@@ -183,6 +189,10 @@ domready(function() {
 	}
 	function pauseSong() {
 		curSource.disconnect(0);
+		shifter.disconnect(0);
+		curSource.stop(0);
+		curSource = null;
+		playing = false;
 	}
 })
 
