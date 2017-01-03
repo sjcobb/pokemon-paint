@@ -47,9 +47,9 @@ function createProcessingNode(context) {
 
 var context
 if (typeof AudioContext !== "undefined") {
-    context = new AudioContext();
+    context = new AudioContext()
 } else if (typeof webkitAudioContext !== "undefined") {
-    context = new webkitAudioContext();
+    context = new webkitAudioContext()
 } else {
     domready(function() {
         document.querySelector(".noWebAudio").style.display = "block"
@@ -71,9 +71,9 @@ function createFileSource(buf) {
 
 
 function loadFile(url) {
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.responseType = 'arraybuffer';
+    var request = new XMLHttpRequest()
+    request.open('GET', url, true)
+    request.responseType = 'arraybuffer'
     request.onload = function() {
         context.decodeAudioData(request.response, function(buffer) {
             dataSources[url] = createFileSource.bind(undefined, buffer)
@@ -82,8 +82,8 @@ function loadFile(url) {
             console.log("Error loading file", url, ":", err)
         })
     }
-    //console.log("request: " + request);
-    request.send();
+    //console.log("request: " + request)
+    request.send()
 }
 
 function loadFiles(list) {
@@ -115,66 +115,66 @@ var prettyNames = {
 domready(function() {
 
 	//Init web audio
-	var shifter = createProcessingNode(context);
+	var shifter = createProcessingNode(context)
 
-	var playing = false;
-	var useFilter = true;
-	var curSource = null;
+	var playing = false
+	var useFilter = true
+	var curSource = null
 
 	/**
 	 * Play song
 	 */
 	document.getElementById("play").onclick = function() {
-	    playSong();
+	    playSong()
 	};
 	document.getElementById("pausePlay").onclick = function() {
-	    pauseSong();
+	    pauseSong()
 	};
 	function playSong() {
-		var table = document.querySelector("table");
-		var data  = parseTable(table);
-		//console.log(data);
+		var table = document.querySelector("table")
+		var data  = parseTable(table)
+		//console.log(data)
 
 		var q = 0;
 		var i = 0;
 		(function myLoop (i) {
 			for (q = 0; q < 5; q++) {
-				var temp = data[i][q];
-				//console.log("temp = "+ temp);
-				//console.log("i = "+ i );
-				//console.log("q = "+ q );
+				var temp = data[i][q]
+				//console.log("temp = "+ temp)
+				//console.log("i = "+ i )
+				//console.log("q = "+ q )
 				if (temp != null) {
 
-					var crySrc = "/assets/cries/mp3/"+ temp +".mp3";
-					//console.log("CRY SOURCE: "+ crySrc);
+					var crySrc = "/assets/cries/mp3/"+ temp +".mp3"
+					//console.log("CRY SOURCE: "+ crySrc)
 					
 					ondatasource = function(url) {
 					    
 					}
 
-					ondatasource(crySrc);
+					ondatasource(crySrc)
 
 					if(playing) {
-					    curSource.disconnect(0);
-					    curSource.stop(0);
-					    curSource = null;
-					    playing = false;
+					    curSource.disconnect(0)
+					    curSource.stop(0)
+					    curSource = null
+					    playing = false
 					} else {
-					    curSource = (dataSources[crySrc])();
-					    curSource.connect(shifter);
-					    shifter.connect(context.destination);
+					    curSource = (dataSources[crySrc])()
+					    curSource.connect(shifter)
+					    shifter.connect(context.destination)
 					    if(!curSource.start) {
-					        curSource.noteOn(0);
+					        curSource.noteOn(0)
 					    } else {
-					        curSource.start(0);
+					        curSource.start(0)
 					    }
-					    curSource.loop = true;
-					    playing = true;
-					    pausePlay.value = "Pause";
+					    curSource.loop = true
+					    playing = true
+					    pausePlay.value = "Pause"
 					}
 
 					if (q == 2) {
-						console.log("B NOTE");
+						console.log("B NOTE")
 					}
 
 				}
@@ -182,17 +182,17 @@ domready(function() {
 
 			setTimeout(function () {
 			    if (++i < 5) {
-			        myLoop(i);
+			        myLoop(i)
 			    } 
 			}, 1000)
 		} ) (0);
 	}
 	function pauseSong() {
-		curSource.disconnect(0);
-		shifter.disconnect(0);
-		curSource.stop(0);
-		curSource = null;
-		playing = false;
+		//curSource.disconnect(0)
+		shifter.disconnect(0)
+		curSource.stop(0)
+		curSource = null
+		playing = false
 	}
 })
 
