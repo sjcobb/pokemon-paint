@@ -28,7 +28,7 @@ function cryLoader() {
 
 function spriteLoader() {
     var i;
-    for (i=1; i <= 3; i++) {
+    for (i=1; i <= 9; i++) {
         var file_num = "00" + i;
         file_num = file_num.substr(file_num.length - 3, 3);
         audio_id = "cry-" + file_num + "";
@@ -292,6 +292,9 @@ var prettyNames = {
 document.getElementById("play").onclick = function() {
     playSong();
 };
+document.getElementById("pausePlay").onclick = function() {
+    pauseSong();
+};
 function playSong() {
 	var table = document.querySelector("table");
 	var data  = parseTable(table);
@@ -322,53 +325,48 @@ function playSong() {
 				//console.log("CRY SOURCE: "+ crySrc);
 				
 				ondatasource = function(url) {
-				    var opt = document.createElement("option");
-				    opt.text = prettyNames[url];
-				    console.log("url: " + url);
-				    opt.value = url;
-				    sourceSelect.add(opt);
+				    
 				}
-
-				//sourceSelect.remove(0)
-				/*for(var id in dataSources) {
-					console.log("id: " + id);
-				    ondatasource(id);
-				}*/
-				//ondatasource("/assets/cries/mp3/001.mp3");
-				/*ondatasource = function(url) {
-				    //var opt = document.createElement("option")
-				    //opt.text = prettyNames[url]
-				    opt.value = crySrc
-				    sourceSelect.add(opt)
-				}*/
 
 				ondatasource(crySrc);
 
-				//curSource = (dataSources[sourceSelect.value])();
-				curSource = (dataSources[crySrc])();
+				//curSource = (dataSources[crySrc])();
 
-				//curSource.connect(context.destination);
+				if(playing) {
+					console.log("turn off");
+				    curSource.disconnect(0);
+				    if(!curSource.start) {
+				        curSource.noteOff(0);
+				    } else {
+				        curSource.stop(0);
+				        curSource.noteOff(0);
+				    }
+				    curSource = null;
+				    playing = false;
+				} else {
+				    curSource = (dataSources[crySrc])();
+				    curSource.connect(shifter);
+				    shifter.connect(context.destination);
+				    if(!curSource.start) {
+				        curSource.noteOn(0);
+				    } else {
+				        curSource.start(0);
+				    }
+				    curSource.loop = true;
+				    playing = true;
+				    pausePlay.value = "Pause";
+				}
 
-				//curSource.connect(shifter);
-
-				curSource.connect(shifter);
+				/* old working */
+				/*curSource.connect(shifter);
 				shifter.connect(context.destination);
-
 				curSource.start(0);
-				curSource.loop = false;
-				//curSource.loop = true;
+				curSource.loop = true;*/
 
 				if (q == 2) {
 					console.log("B NOTE");
 				}
 
-				/* old */
-				/*var snd1  = new Audio();
-				var src1  = document.createElement("source");
-				src1.type = "audio/mpeg";
-				src1.src  = "assets/cries/mp3/"+ temp +".mp3";
-				snd1.appendChild(src1);
-				snd1.play();*/
 			}
 		}
 
@@ -378,4 +376,8 @@ function playSong() {
 		    } 
 		}, 1000)
 	} ) (0);
+}
+function pauseSong() {
+	//curSource.disconnect(0);
+	context.disconnect(0);
 }
