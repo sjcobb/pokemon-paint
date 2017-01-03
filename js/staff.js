@@ -17,7 +17,8 @@ function createProcessingNode(context) {
         queue.push(buf)
     }, function(t, pitch) {
         console.log(t, pitch)
-        return 0.1 * (Math.round(t) % 15) + 0.5
+        return t + 0.1
+        //return 0.1 * (Math.round(t) % 15) + 0.5
     }, {
         frameSize: frame_size,
         hopSize: hop_size
@@ -163,14 +164,11 @@ domready(function() {
 					    curSource = (dataSources[crySrc])()
 					    curSource.connect(shifter)
 					    shifter.connect(context.destination)
-					    if(!curSource.start) {
-					        curSource.noteOn(0)
-					    } else {
-					        curSource.start(0)
-					    }
-					    curSource.loop = true
+					    curSource.start(0)
+
+					    //curSource.loop = true
+					    curSource.loop = false
 					    playing = true
-					    pausePlay.value = "Pause"
 					}
 
 					if (q == 2) {
@@ -182,17 +180,31 @@ domready(function() {
 
 			setTimeout(function () {
 			    if (++i < 5) {
+			    	if(playing) {
+			    		console.log("Loop disconnect")
+				    	curSource.disconnect(0)
+				    	curSource.stop(0)
+				    	curSource = null
+				    	playing = false
+			    	}
+
 			        myLoop(i)
 			    } 
 			}, 1000)
 		} ) (0);
 	}
 	function pauseSong() {
-		//curSource.disconnect(0)
-		shifter.disconnect(0)
-		curSource.stop(0)
-		curSource = null
-		playing = false
+		if(playing) {
+			console.log("SONG PAUSED")
+			//context.close();
+		    curSource.disconnect(0)
+		    shifter.disconnect(0)
+		    curSource.stop(0)
+		    curSource = null
+		    playing = false
+		} else {
+			shifter.disconnect(0)
+		}
 	}
 })
 
