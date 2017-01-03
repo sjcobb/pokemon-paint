@@ -16,7 +16,7 @@ function createProcessingNode(context) {
         buf.set(data)
         queue.push(buf)
     }, function(t, pitch) {
-        console.log(t, pitch)
+        //console.log(t, pitch)
         return 0.1 * (Math.round(t) % 15) + 0.5
     }, {
         frameSize: frame_size,
@@ -30,7 +30,8 @@ function createProcessingNode(context) {
     shifter(new Float32Array(frame_size))
     shifter(new Float32Array(frame_size))
   
-    //Create a script node
+    //Create a script node, parameters: bufferSize, numberOfInputChannels, numberOfOutputChannels
+    //bufferSize: controls how frequently the audioprocess event is dispatched, balance between latency and audio quality
     var scriptNode = context.createScriptProcessor(frame_size, 1, 1)
     scriptNode.onaudioprocess = function(e) {
         shifter(e.inputBuffer.getChannelData(0))
@@ -59,7 +60,7 @@ if (typeof AudioContext !== "undefined") {
 var ondatasource = function(url, buf) {}
 
 var dataSources = {
-    "oscillator": function() { return context.createOscillator() }
+    //"oscillator": function() { return context.createOscillator() }
 }
 
 function createFileSource(buf) {
@@ -81,17 +82,37 @@ function loadFile(url) {
             console.log("Error loading file", url, ":", err)
         })
     }
-    request.send()
+    console.log("request: " + request);
+    request.send();
+}
+
+function loadFiles(list) {
+    for(var i=0; i<list.length; ++i) {
+        loadFile(list[i])
+    }
+}
+
+loadFiles([
+    "/assets/cries/mp3/001.mp3", 
+    "/assets/cries/mp3/002.mp3",
+    "/assets/cries/mp3/003.mp3",
+    "/assets/cries/mp3/150.mp3"
+])
+
+var prettyNames = {
+    "/assets/cries/mp3/001.mp3": "Bulbasaur",
+    "/assets/cries/mp3/002.mp3": "Ivysaur",
+    "/assets/cries/mp3/150.mp3": "Mewtwo"
 }
 
 /**
  * Generate musical staff
  */
-function generateStaff() {
+/*function generateStaff() {
 	var table = document.querySelector("table");
 	var data  = parseTable(table);
 	console.log(data);
-}
+}*/
 
 /**
  * Play song
@@ -109,17 +130,39 @@ function playSong() {
 	(function myLoop (i) {
 		for (q = 0; q < 5; q++) {
 			var temp = data[i][q];
-			console.log("temp = "+ temp);
-			console.log("i = "+ i );
-			console.log("q = "+ q );
+			//console.log("temp = "+ temp);
+			//console.log("i = "+ i );
+			//console.log("q = "+ q );
 			if (temp != null) {
 
 				//Init web audio
 				var shifter = createProcessingNode(context);
-				var curSource = null;
-				var crySrc = "assets/cries/mp3/"+ temp +".mp3";
-				console.log("CRY SOURCE: "+ crySrc);
 
+				var pausePlay = document.getElementById("pausePlay");
+				var sourceSelect = document.getElementById("audioSource");
+				var applyShift = document.getElementById("applyShift");
+
+				var playing = false;
+				var useFilter = true;
+				var curSource = null;
+
+				var crySrc = "/assets/cries/mp3/"+ temp +".mp3";
+				//console.log("CRY SOURCE: "+ crySrc);
+				
+				ondatasource = function(url) {
+				    var opt = document.createElement("option");
+				    opt.text = prettyNames[url];
+				    console.log("url: " + url);
+				    opt.value = url;
+				    sourceSelect.add(opt);
+				}
+
+				//sourceSelect.remove(0)
+				/*for(var id in dataSources) {
+					console.log("id: " + id);
+				    ondatasource(id);
+				}*/
+				//ondatasource("/assets/cries/mp3/001.mp3");
 				/*ondatasource = function(url) {
 				    //var opt = document.createElement("option")
 				    //opt.text = prettyNames[url]
@@ -129,16 +172,19 @@ function playSong() {
 
 				ondatasource(crySrc);
 
-				//curSource = (dataSources[sourceSelect.value])()
-				//curSource = (dataSources[crySrc])();
-				curSource = crySrc;
+				//curSource = (dataSources[sourceSelect.value])();
+				curSource = (dataSources[crySrc])();
 
 				//curSource.connect(context.destination);
+
+				//curSource.connect(shifter);
 
 				curSource.connect(shifter);
 				shifter.connect(context.destination);
 
 				curSource.start(0);
+				curSource.loop = false;
+				//curSource.loop = true;
 
 				if (q == 2) {
 					console.log("B NOTE");
