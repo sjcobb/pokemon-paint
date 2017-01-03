@@ -254,7 +254,7 @@ function loadFile(url) {
             console.log("Error loading file", url, ":", err)
         })
     }
-    console.log("request: " + request);
+    //console.log("request: " + request);
     request.send();
 }
 
@@ -274,110 +274,87 @@ loadFiles([
 var prettyNames = {
     "/assets/cries/mp3/001.mp3": "Bulbasaur",
     "/assets/cries/mp3/002.mp3": "Ivysaur",
+    "/assets/cries/mp3/003.mp3": "Venusaur",
     "/assets/cries/mp3/150.mp3": "Mewtwo"
 }
 
-/**
- * Generate musical staff
- */
-/*function generateStaff() {
-	var table = document.querySelector("table");
-	var data  = parseTable(table);
-	console.log(data);
-}*/
+domready(function() {
 
-/**
- * Play song
- */
-document.getElementById("play").onclick = function() {
-    playSong();
-};
-document.getElementById("pausePlay").onclick = function() {
-    pauseSong();
-};
-function playSong() {
-	var table = document.querySelector("table");
-	var data  = parseTable(table);
-	//console.log(data);
+	//Init web audio
+	var shifter = createProcessingNode(context);
 
-	var q = 0;
-	var i = 0;
-	(function myLoop (i) {
-		for (q = 0; q < 5; q++) {
-			var temp = data[i][q];
-			//console.log("temp = "+ temp);
-			//console.log("i = "+ i );
-			//console.log("q = "+ q );
-			if (temp != null) {
+	var playing = false;
+	var useFilter = true;
+	var curSource = null;
 
-				//Init web audio
-				var shifter = createProcessingNode(context);
+	/**
+	 * Play song
+	 */
+	document.getElementById("play").onclick = function() {
+	    playSong();
+	};
+	document.getElementById("pausePlay").onclick = function() {
+	    pauseSong();
+	};
+	function playSong() {
+		var table = document.querySelector("table");
+		var data  = parseTable(table);
+		//console.log(data);
 
-				var pausePlay = document.getElementById("pausePlay");
-				var sourceSelect = document.getElementById("audioSource");
-				var applyShift = document.getElementById("applyShift");
+		var q = 0;
+		var i = 0;
+		(function myLoop (i) {
+			for (q = 0; q < 5; q++) {
+				var temp = data[i][q];
+				//console.log("temp = "+ temp);
+				//console.log("i = "+ i );
+				//console.log("q = "+ q );
+				if (temp != null) {
 
-				var playing = false;
-				var useFilter = true;
-				var curSource = null;
+					var crySrc = "/assets/cries/mp3/"+ temp +".mp3";
+					//console.log("CRY SOURCE: "+ crySrc);
+					
+					ondatasource = function(url) {
+					    
+					}
 
-				var crySrc = "/assets/cries/mp3/"+ temp +".mp3";
-				//console.log("CRY SOURCE: "+ crySrc);
-				
-				ondatasource = function(url) {
-				    
+					ondatasource(crySrc);
+
+					if(playing) {
+					    curSource.disconnect(0);
+					    curSource.stop(0);
+					    curSource = null;
+					    playing = false;
+					} else {
+					    curSource = (dataSources[crySrc])();
+					    curSource.connect(shifter);
+					    shifter.connect(context.destination);
+					    if(!curSource.start) {
+					        curSource.noteOn(0);
+					    } else {
+					        curSource.start(0);
+					    }
+					    curSource.loop = true;
+					    playing = true;
+					    pausePlay.value = "Pause";
+					}
+
+					if (q == 2) {
+						console.log("B NOTE");
+					}
+
 				}
-
-				ondatasource(crySrc);
-
-				//curSource = (dataSources[crySrc])();
-
-				if(playing) {
-					console.log("turn off");
-				    curSource.disconnect(0);
-				    if(!curSource.start) {
-				        curSource.noteOff(0);
-				    } else {
-				        curSource.stop(0);
-				        curSource.noteOff(0);
-				    }
-				    curSource = null;
-				    playing = false;
-				} else {
-				    curSource = (dataSources[crySrc])();
-				    curSource.connect(shifter);
-				    shifter.connect(context.destination);
-				    if(!curSource.start) {
-				        curSource.noteOn(0);
-				    } else {
-				        curSource.start(0);
-				    }
-				    curSource.loop = true;
-				    playing = true;
-				    pausePlay.value = "Pause";
-				}
-
-				/* old working */
-				/*curSource.connect(shifter);
-				shifter.connect(context.destination);
-				curSource.start(0);
-				curSource.loop = true;*/
-
-				if (q == 2) {
-					console.log("B NOTE");
-				}
-
 			}
-		}
 
-		setTimeout(function () {
-		    if (++i < 5) {
-		        myLoop(i);
-		    } 
-		}, 1000)
-	} ) (0);
-}
-function pauseSong() {
-	//curSource.disconnect(0);
-	context.disconnect(0);
-}
+			setTimeout(function () {
+			    if (++i < 5) {
+			        myLoop(i);
+			    } 
+			}, 1000)
+		} ) (0);
+	}
+	function pauseSong() {
+		curSource.disconnect(0);
+	}
+})
+
