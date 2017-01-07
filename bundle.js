@@ -276,7 +276,9 @@ loadFiles([
     "/assets/cries/mp3/007.mp3",
     "/assets/cries/mp3/008.mp3",
     "/assets/cries/mp3/009.mp3",
-    "/assets/cries/mp3/150.mp3"
+    "/assets/cries/mp3/150.mp3",
+    "/assets/cries/mp3/drum.mp3",
+    "/assets/cries/mp3/key.mp3",
 ])
 
 var prettyNames = {
@@ -343,7 +345,6 @@ domready(function() {
 					    curSource.loop = false
 					    playing = true
 					    setTimeout(function () {
-					    	console.log("reached")
 					    	shifter.disconnect(0)
 					    	playing = false
 					    }, 800);
