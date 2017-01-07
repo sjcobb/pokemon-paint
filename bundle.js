@@ -342,6 +342,11 @@ domready(function() {
 					    //curSource.loop = true
 					    curSource.loop = false
 					    playing = true
+					    setTimeout(function () {
+					    	console.log("reached")
+					    	shifter.disconnect(0)
+					    	playing = false
+					    }, 800);
 					}
 
 					if (q == 2) {
@@ -369,11 +374,7 @@ domready(function() {
 	function pauseSong() {
 		if(playing) {
 			console.log("SONG PAUSED")
-			//context.close();
-		    curSource.disconnect(0)
 		    shifter.disconnect(0)
-		    curSource.stop(0)
-		    curSource = null
 		    playing = false
 		} else {
 			shifter.disconnect(0)
