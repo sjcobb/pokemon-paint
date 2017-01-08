@@ -121,9 +121,12 @@ function drag(ev) {
 }
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    //console.log(data);
-    ev.target.appendChild(document.getElementById(data));
+    var data = ev.dataTransfer.getData("text")
+    console.log("data: ", data)
+    var clone = document.getElementById(data).cloneNode(true)
+    console.log("clone: ", clone)
+    ev.target.appendChild(clone)
+    //ev.target.appendChild(document.getElementById(data));
 }
 /* https://gist.github.com/WickyNilliams/9252235 */
 /**
