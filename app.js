@@ -28,7 +28,7 @@ function cryLoader() {
 
 function spriteLoader() {
     var i;
-    for (i=1; i <= 9; i++) {
+    for (i=1; i <= 151; i++) {
         var file_num = "00" + i;
         file_num = file_num.substr(file_num.length - 3, 3);
         audio_id = "cry-" + file_num + "";
@@ -178,7 +178,7 @@ var domready = require("domready")
 var pool = require("typedarray-pool")
 var pitchShift = require("pitch-shift")
 
-function createProcessingNode(context) {
+function createProcessingNode(context, note_shift) {
     var queue = []
     var frame_size = 1024
     var hop_size = 256
@@ -188,9 +188,12 @@ function createProcessingNode(context) {
         buf.set(data)
         queue.push(buf)
     }, function(t, pitch) {
-        console.log(t, pitch)
-        return t + 0.1
+        console.log("time: ", t, "pitch: ", pitch)
+        console.log("note shift: ", note_shift);
+        //return t + 0.1		//more = higher pitch
         //return 0.1 * (Math.round(t) % 15) + 0.5
+        return t + note_shift
+        //return 0.1 * (Math.round(t) % 15) + note_shift
     }, {
         frameSize: frame_size,
         hopSize: hop_size
@@ -276,6 +279,7 @@ loadFiles([
     "/assets/cries/mp3/008.mp3",
     "/assets/cries/mp3/009.mp3",
     "/assets/cries/mp3/150.mp3",
+    "/assets/cries/mp3/151.mp3",
     "/assets/cries/mp3/drum.mp3",
     "/assets/cries/mp3/key.mp3",
 ])
@@ -295,6 +299,7 @@ domready(function() {
 	var playing = false
 	var useFilter = true
 	var curSource = null
+	var note_shift;
 
 	/**
 	 * Play song
@@ -335,6 +340,29 @@ domready(function() {
 					    curSource = null
 					    playing = false
 					} else {
+						console.log("connect");
+						switch(q) {
+						    case 0:
+						        note_shift = 0.5
+						        break
+						    case 1:
+						        note_shift = 0.4
+						        break
+						    case 2:
+						        note_shift = 0.3
+						        console.log("B NOTE")
+						        break
+						    case 3:
+						        note_shift = 0.2
+						        break
+						    case 4:
+						        note_shift = 0.1
+						        break
+						    default:
+						        note_shift = 0.1
+						}
+						shifter = createProcessingNode(context, note_shift)
+
 					    curSource = (dataSources[crySrc])()
 					    curSource.connect(shifter)
 					    shifter.connect(context.destination)
@@ -344,15 +372,11 @@ domready(function() {
 					    curSource.loop = false
 					    playing = true
 					    setTimeout(function () {
+					    	console.log("disconnect");
 					    	shifter.disconnect(0)
 					    	playing = false
-					    }, 800);
+					    }, 1400);
 					}
-
-					if (q == 2) {
-						console.log("B NOTE")
-					}
-
 				}
 			}
 
@@ -368,7 +392,7 @@ domready(function() {
 
 			        myLoop(i)
 			    } 
-			}, 1000)
+			}, 1500)
 		} ) (0);
 	}
 	function pauseSong() {
@@ -378,6 +402,9 @@ domready(function() {
 		    playing = false
 		} else {
 			shifter.disconnect(0)
+			curSource.disconnect(0)
+			curSource.stop(0)
+			curSource = null
 		}
 	}
 })
