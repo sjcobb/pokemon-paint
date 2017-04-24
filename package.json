@@ -37,3 +37,6 @@
     "gulp-concat": "^2.6.0"
   }
 }
+
+//  browserify app.js --s module > bundle.js
+//  watchify app.js -o bundle.js
