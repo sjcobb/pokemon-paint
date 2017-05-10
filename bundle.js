@@ -274,26 +274,26 @@ function loadFiles(list) {
 }
 
 loadFiles([
-    "/assets/cries/mp3/001.mp3", 
-    "/assets/cries/mp3/002.mp3",
-    "/assets/cries/mp3/003.mp3",
-    "/assets/cries/mp3/004.mp3",
-    "/assets/cries/mp3/005.mp3",
-    "/assets/cries/mp3/006.mp3",
-    "/assets/cries/mp3/007.mp3",
-    "/assets/cries/mp3/008.mp3",
-    "/assets/cries/mp3/009.mp3",
-    "/assets/cries/mp3/150.mp3",
-    "/assets/cries/mp3/151.mp3",
-    "/assets/cries/mp3/drum.mp3",
-    "/assets/cries/mp3/key.mp3",
+    "/pokemon-paint/assets/cries/mp3/001.mp3", 
+    "/pokemon-paint/assets/cries/mp3/002.mp3",
+    "/pokemon-paint/assets/cries/mp3/003.mp3",
+    "/pokemon-paint/assets/cries/mp3/004.mp3",
+    "/pokemon-paint/assets/cries/mp3/005.mp3",
+    "/pokemon-paint/assets/cries/mp3/006.mp3",
+    "/pokemon-paint/assets/cries/mp3/007.mp3",
+    "/pokemon-paint/assets/cries/mp3/008.mp3",
+    "/pokemon-paint/assets/cries/mp3/009.mp3",
+    "/pokemon-paint/assets/cries/mp3/150.mp3",
+    "/pokemon-paint/assets/cries/mp3/151.mp3",
+    "/pokemon-paint/assets/cries/mp3/drum.mp3",
+    "/pokemon-paint/assets/cries/mp3/key.mp3",
 ])
 
 var prettyNames = {
-    "/assets/cries/mp3/001.mp3": "Bulbasaur",
-    "/assets/cries/mp3/002.mp3": "Ivysaur",
-    "/assets/cries/mp3/003.mp3": "Venusaur",
-    "/assets/cries/mp3/150.mp3": "Mewtwo"
+    "/pokemon-paint/assets/cries/mp3/001.mp3": "Bulbasaur",
+    "/pokemon-paint/assets/cries/mp3/002.mp3": "Ivysaur",
+    "/pokemon-paint/assets/cries/mp3/003.mp3": "Venusaur",
+    "/pokemon-paint/assets/cries/mp3/150.mp3": "Mewtwo"
 }
 
 domready(function() {
@@ -330,7 +330,7 @@ domready(function() {
 				//console.log("q = "+ q )
 				if (temp != null) {
 
-					var crySrc = "/assets/cries/mp3/"+ temp +".mp3"
+					var crySrc = "/pokemon-paint/assets/cries/mp3/"+ temp +".mp3"
 					//console.log("CRY SOURCE: "+ crySrc)
 					
 					ondatasource = function(url) {
